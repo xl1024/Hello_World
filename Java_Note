@@ -1,0 +1,89 @@
+/*
+
+java 初学 9月4号的笔记
+
+*/
+
+
+import java.util.*;
+
+interface A {
+    public void func1();
+}
+
+class B             // 类如果用 final 修饰 则不能被继承
+{
+    int i = 10;
+
+    public void get(A a) {
+        a.func1();
+    }
+
+    public void test() {
+        this.get(new A() {                    // 定义一个匿名内部类来实现 接口 A
+            public void func1() {
+                System.out.println(i);
+            }
+        });
+    }
+
+    public void talk() {
+        System.out.println("测试匿名对象");
+    }
+
+    public void func1() {
+        System.out.println(i);
+    }
+
+    static {                                    // 静态代码块通常用于对静态属性初始化
+        System.out.println("静态代码块");
+    }
+}
+
+
+public class TestNonameInner {
+    public static void main(String[] args) {
+        B b = new B();
+        b.test();
+        new B().talk();               // 用匿名对象
+        b.i = 10;
+
+        String a = "999";
+        Integer t = new Integer(a);
+        int i = Integer.parseInt(a);
+        System.out.println(t);
+        int c = 15;
+        /*Runtime run = Runtime.getRuntime();          // Runtime 可以执行操作系统的可执行程序
+        try{
+            run.exec("notepad.exe");        // 用 exec 方法启动其他进程  这里是打开 记事本 的命令
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }*/
+
+        Calendar c1 = Calendar.getInstance();
+        System.out.println(c1.get(c1.YEAR) + "年" + (c1.get(c1.MONTH) + 1) + "月" + c1.get(c1.DAY_OF_MONTH) + "日" + c1.get(c1.HOUR) + "点" + c1.get(c1.MINUTE) + "分" + c1.get(c1.SECOND) + "秒");
+
+        c1.add(Calendar.YEAR, 100);
+        System.out.println(c1.get(c1.YEAR) + "年" + (c1.get(c1.MONTH) + 1) + "月" + c1.get(c1.DAY_OF_MONTH) + "日" + c1.get(c1.HOUR) + "点" + c1.get(c1.MINUTE) + "分" + c1.get(c1.SECOND) + "秒");
+        int MAX = 20;
+        int MIN = 18;
+        System.out.println(Math.max(MAX, MIN));
+        System.out.println();
+        try {
+            Runtime.getRuntime().exec("notepad.exe");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        int [] array = new int[5];
+        array[100] = 100;
+        System.out.println("Can you come here?");
+
+    }
+}
+
+
+
+
+
